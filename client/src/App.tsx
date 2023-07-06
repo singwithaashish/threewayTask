@@ -1,13 +1,25 @@
-import { Button } from 'flowbite-react'
-import './App.css'
+import { Button } from "flowbite-react";
+import Header from "./components/Layout/Header";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+  useNavigate,
+} from "react-router-dom";
+import Login from "./pages/Authentication/Login";
+import Register from "./pages/Authentication/Register";
+// import './App.css'
 
 function App() {
-
   return (
-    <Button color="primary">
-      <p className='text-green-600'>Hello World</p>
-    </Button>
-  )
+    <Router>
+      <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
+    </Router>
+  );
 }
 
-export default App
+export default App;
