@@ -10,9 +10,25 @@ function Register() {
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const [loading, setLoading] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(isManufacturer, name, email, password, confPassword);
+    setLoading(true);
+    // console.log(isManufacturer, name, email, password, confPassword);
+    const res = await fetch("http://localhost:8000/auth/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        isManufacturer,
+        name,
+        email,
+        password,
+      }),
+    });
+    const data = await res.json();
+    console.log(data);
+    setLoading(false);
   };
 
   return (
@@ -89,7 +105,7 @@ function Register() {
           type="submit"
           className=" bg-primary hover:opacity-80 duration-150 p-2 text-white rounded"
         >
-          Create account
+          {loading ? "Loading..." : "Create account"}
         </button>
         <div className="flex justify-between text-sm font-medium text-gray-500">
           Already registered?&nbsp;

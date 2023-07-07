@@ -1,14 +1,34 @@
-import { Label, TextInput, Checkbox } from "flowbite-react";
+import { Label, TextInput, Checkbox, Spinner } from "flowbite-react";
 import { useState } from "react";
 import LabeledInput from "../../components/Common/LabeledInput";
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(email, password);
+    setLoading(true);
+    const res = await fetch("http://localhost:8000/auth/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
+    const data = await res.json();
+    if (res.status !== 200) {
+      alert(data.message);
+      setLoading(false);
+      return;
+    }
+    console.log(data);
+    localStorage.setItem("token", data.token);
+    setLoading(false);
+    // now we can redirect to home page
+    window.location.href = "/";
   };
 
   return (
@@ -48,7 +68,7 @@ function Login() {
           type="submit"
           className=" bg-primary hover:opacity-80 duration-150 p-2 text-white rounded"
         >
-          Log in to your account
+          {loading ? <Spinner /> : "Sign in"}
         </button>
 
         <div className="flex justify-between text-sm font-medium text-gray-500 dark:text-gray-300">

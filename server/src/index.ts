@@ -4,6 +4,10 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import http from "http";
 import dotenv from 'dotenv';
+import authRoutes from './routes/auth.routes';
+import dashRoutes from './routes/dash.routes';
+
+
 dotenv.config();
 
 const app = express();
@@ -13,7 +17,10 @@ app.use(bodyParser.json());
 const server = http.createServer(app);
 
 // Enable CORS
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173',
+  credentials: true
+}));
 
 // Connect to MongoDB
 const options: ConnectOptions = {
@@ -34,3 +41,6 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
+
+  app.use('/auth', authRoutes);
+  app.use('/dash', dashRoutes);
