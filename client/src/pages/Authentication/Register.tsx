@@ -2,6 +2,7 @@ import { Label, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { classes } from "../../utils/constants";
 import LabeledInput from "../../components/Common/LabeledInput";
+import MyButton from "../../components/Common/MyButton";
 
 function Register() {
   const [isManufacturer, setIsManufacturer] = useState(false);
@@ -27,7 +28,12 @@ function Register() {
       }),
     });
     const data = await res.json();
-    console.log(data);
+    if (res.status !== 200) {
+      alert(data.message);
+    } else {
+      window.location.href = "/login";
+    }
+
     setLoading(false);
   };
 
@@ -101,12 +107,7 @@ function Register() {
           onChange={(e) => setConfPassword(e.target.value)}
         />
 
-        <button
-          type="submit"
-          className=" bg-primary hover:opacity-80 duration-150 p-2 text-white rounded"
-        >
-          {loading ? "Loading..." : "Create account"}
-        </button>
+        <MyButton loading={loading} text="Register" />
         <div className="flex justify-between text-sm font-medium text-gray-500">
           Already registered?&nbsp;
           <a href="/login" className="text-primary hover:underline">

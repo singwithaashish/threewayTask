@@ -38,3 +38,15 @@ export const login = async (req: Request, res: Response) => {
 
     res.status(200).json({ token });
 }
+
+
+export const me = async (req: Request, res: Response) => {
+    try {
+        const user = req.user.toObject();
+        delete user.password;
+        return res.status(200).json({ user });
+    }
+    catch (err) {
+        return res.status(500).json({ message: 'Internal Server Error' });
+    }
+}

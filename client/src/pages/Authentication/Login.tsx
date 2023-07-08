@@ -1,6 +1,7 @@
 import { Label, TextInput, Checkbox, Spinner } from "flowbite-react";
 import { useState } from "react";
 import LabeledInput from "../../components/Common/LabeledInput";
+import MyButton from "../../components/Common/MyButton";
 
 function Login() {
   const [email, setEmail] = useState("");
@@ -64,12 +65,13 @@ function Login() {
             <Label htmlFor="remember">Remember me</Label>
           </div>
         </div>
-        <button
+        {/* <button
           type="submit"
           className=" bg-primary hover:opacity-80 duration-150 p-2 text-white rounded"
         >
           {loading ? <Spinner /> : "Sign in"}
-        </button>
+        </button> */}
+        <MyButton loading={loading} />
 
         <div className="flex justify-between text-sm font-medium text-gray-500 dark:text-gray-300">
           Not registered?&nbsp;
