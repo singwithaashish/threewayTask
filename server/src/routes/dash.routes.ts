@@ -6,10 +6,10 @@ import {
   updatePrice,
   updateStatus,
   getOrders,
-  getOrdersByTransporter,
-  getOrdersByManufacturer,
   getAllTransporters,
   getRoom,
+  acceptQuote,
+  getOrderForUserId,
 } from "../controllers/dashController";
 import { getMessages, sendMessages } from "../controllers/messageController";
 
@@ -18,18 +18,10 @@ const router = express.Router();
 router.get("/", authMiddleware, sendHello);
 router.post("/addOrder", authMiddleware, addOrder);
 router.post("/updatePrice", authMiddleware, updatePrice);
+router.post("/acceptQuote", authMiddleware, acceptQuote);
 router.post("/updateStatus", authMiddleware, updateStatus);
 router.get("/getOrders", authMiddleware, getOrders);
-router.get(
-  "/getOrdersByTransporter/:transporter",
-  authMiddleware,
-  getOrdersByTransporter
-);
-router.get(
-  "/getOrdersByManufacturer/:manufacturer",
-  authMiddleware,
-  getOrdersByManufacturer
-);
+router.get("/getMyOrders/:id", authMiddleware, getOrderForUserId);
 
 router.get("/getRoom", authMiddleware, getRoom)
 

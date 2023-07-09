@@ -55,9 +55,26 @@ export const updatePrice = async (req: Request, res: Response) => {
     if (!order) return res.status(400).json({ message: "Invalid order id" });
 
     order.price = price;
+    order.status = "quoted";
     await order.save();
 
     res.status(200).json({ message: "Price updated successfully" });
+  } catch (e) {
+    res.status(500).json({ message: "Internal Server Error" });
+  }
+};
+
+
+export const acceptQuote = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.body;
+    const order = await Order.findById(id);
+    if (!order) return res.status(400).json({ message: "Invalid order id" });
+
+    order.status = "approved";
+    await order.save();
+
+    res.status(200).json({ message: "Order approved successfully" });
   } catch (e) {
     res.status(500).json({ message: "Internal Server Error" });
   }
@@ -89,25 +106,19 @@ export const getOrders = async (req: Request, res: Response) => {
   }
 };
 
-export const getOrdersByTransporter = async (req: Request, res: Response) => {
+export const getOrderForUserId = async (req: Request, res: Response) => {
   try {
-    const { transporter } = req.params;
-    const orders = await Order.find({ transporter });
+    const { id } = req.params;
+    const orders = await Order.find({
+      $or: [{ manufacturerId: id }, { transporterId: id }],
+    });
     res.status(200).json({ orders });
   } catch (e) {
     res.status(500).json({ message: "Internal Server Error" });
   }
 };
+   
 
-export const getOrdersByManufacturer = async (req: Request, res: Response) => {
-  try {
-    const { manufacturer } = req.params;
-    const orders = await Order.find({ manufacturer });
-    res.status(200).json({ orders });
-  } catch (e) {
-    res.status(500).json({ message: "Internal Server Error" });
-  }
-};
 
 export const getAllTransporters = async (req: Request, res: Response) => {
   try {

@@ -13,8 +13,9 @@ export default function OrderCard({ order }: { order: Order }) {
 
   const [price, setPrice] = React.useState<number>(0);
 
-  const submitPrice = async () => {
-    const res = await fetch("http://localhost:8000/dash/submitPrice", {
+  const submitPrice = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const res = await fetch("http://localhost:8000/dash/updatePrice", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -22,16 +23,19 @@ export default function OrderCard({ order }: { order: Order }) {
       },
       credentials: "include",
       body: JSON.stringify({
-        orderId: order._id,
+        id: order._id,
         price: price,
       }),
     });
 
     const data = await res.json();
     console.log(data);
+    // refresh page
+    window.location.href = "/";
   };
 
-  const acceptQuote = async () => {
+  const acceptQuote = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     const res = await fetch("http://localhost:8000/dash/acceptQuote", {
       method: "POST",
       headers: {
@@ -40,12 +44,13 @@ export default function OrderCard({ order }: { order: Order }) {
       },
       credentials: "include",
       body: JSON.stringify({
-        orderId: order._id,
+        id: order._id,
       }),
     });
 
     const data = await res.json();
-    console.log(data);
+    // refresh page
+    window.location.href = "/";
   };
   return (
     <div
@@ -97,7 +102,7 @@ export default function OrderCard({ order }: { order: Order }) {
             user?.isManufacturer ? (
               <p className="text-gray-900 font-bold">Awaiting Quote</p>
             ) : (
-              <form onSubmit={submitPrice} className="flex flex-col">
+              <form onSubmit={e => submitPrice(e)} className="flex flex-col">
                 <input
                   type="number"
                   className="text-gray-900 font-bold w-24"
@@ -110,9 +115,9 @@ export default function OrderCard({ order }: { order: Order }) {
                 </button>
               </form>
             )
-          ) : order.status === "Quoted" ? (
+          ) : order.status === "quoted" ? (
             user?.isManufacturer ? (
-              <button onClick={acceptQuote} className="text-gray-900 font-bold">Accept Quote</button>
+              <button onClick={e => acceptQuote(e)} className="text-white rounded p-1 bg-primary  font-bold">Accept Quote</button>
             ) : (
               <p className="text-gray-900 font-bold">Awaiting Acceptance</p>
             )

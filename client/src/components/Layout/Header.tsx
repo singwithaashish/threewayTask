@@ -46,10 +46,10 @@ export default function Header() {
         <Navbar.Toggle />
       </div>
       <Navbar.Collapse>
-        <Navbar.Link active href="#">
+        {/* <Navbar.Link active href="#">
           <p>Home</p>
         </Navbar.Link>
-        <Navbar.Link href="#">About</Navbar.Link>
+        <Navbar.Link href="#">About</Navbar.Link> */}
       </Navbar.Collapse>
     </Navbar>
   );

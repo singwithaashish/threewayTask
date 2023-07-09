@@ -51,7 +51,17 @@ useEffect(() => {
 
     socket.on("message", (message: Message) => {
       // console.log("Message: ", message);
-      setChat((prevChat) => [...prevChat, message]);
+      // here messages are repeating because of the useEffect dependency so 
+      // setChat((prevChat) => [...prevChat, message]);
+
+      // we do this instead
+      setChat((prevChat) => {
+        if (prevChat.length > 0 && prevChat[prevChat.length - 1]._id === message._id) {
+          return prevChat;
+        }
+        
+        return [...prevChat, message];
+      });
 
     });
 
@@ -88,7 +98,7 @@ useEffect(() => {
     setMessage("");
   };
   return (
-    <div className="flex flex-col-reverse h-[86vh] bg-white w-1/2 rounded ">
+    <div className="flex flex-col-reverse h-[86vh] bg-gray-50 w-1/2 rounded ">
       {selectedOrder?._id ? (
         <>
           <form onSubmit={sendMessage} className="flex justify-center p-2">
@@ -96,8 +106,11 @@ useEffect(() => {
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               placeholder="Enter message..."
+              required
+              className="border border-gray-300 rounded px-3 py-2 w-1/2"
             />
-            <button type="submit">Send</button>
+            <button type="submit" className={ `ml-2 px-3 py-2 rounded ${message ? "bg-primary text-white" : "bg-gray-300 text-gray-500"}` } disabled={!message}
+            >Send</button>
           </form>
           <div className="overflow-y-auto h-[80vh]">
             {chat.map((message, index) => (
