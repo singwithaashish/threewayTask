@@ -17,7 +17,7 @@ interface MessageProps {
 
 
 export default function Message(
-    { message, user }: MessageProps
+    { message }: MessageProps
 ) {
   return (
     <div className="bg-gray-100 p-2 rounded-lg">

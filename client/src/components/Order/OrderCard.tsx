@@ -49,6 +49,7 @@ export default function OrderCard({ order }: { order: Order }) {
     });
 
     const data = await res.json();
+    console.log(data);
     // refresh page
     window.location.href = "/";
   };

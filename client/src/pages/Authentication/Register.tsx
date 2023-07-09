@@ -1,4 +1,3 @@
-import { Label, TextInput } from "flowbite-react";
 import { useState } from "react";
 import { classes } from "../../utils/constants";
 import LabeledInput from "../../components/Common/LabeledInput";

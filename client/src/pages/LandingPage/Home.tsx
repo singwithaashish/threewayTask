@@ -1,10 +1,9 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { setUser } from "../../features/globalSlice";
 import { User } from "../../typings";
 import Header from "../../components/Layout/Header";
 import OrderList from "../../components/Order/OrderList";
-import { RootState } from "../../app/store";
 import ChatList from "../../components/Chat/ChatList";
 
 function Home() {

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Order } from "../../typings";
 import OrderCard from "./OrderCard";
 import { useDispatch, useSelector } from "react-redux";

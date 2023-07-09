@@ -1,4 +1,4 @@
-import { Button, Checkbox, Label, Modal, TextInput } from "flowbite-react";
+import { Button, Label, Modal } from "flowbite-react";
 import { useEffect, useState } from "react";
 import LabeledInput from "../Common/LabeledInput";
 import MyButton from "../Common/MyButton";
@@ -40,7 +40,6 @@ const TheFrom = ({setOpenModal} : {
   const [quantity, setQuantity] = useState<number>(0);
   const [pickup, setPickup] = useState<string>("");
   const [transporter, setTransporter] = useState<string>("");
-  const [loading, setLoading] = useState<boolean>(false);
   const dispatch = useDispatch();
 
   const orders = useSelector((state: RootState) => state.global.orders);
