@@ -20,7 +20,7 @@ MERN Chat Dashboard is a web application that allows communication between a Man
 ## Installation
 1. Clone the repository
 ```
-git clone
+git clone https://github.com/singwithaashish/threewayTask
 ```
 
 2. Install dependencies
