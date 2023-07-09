@@ -61,5 +61,12 @@ npm run start
 
 
 
+## Screenshots
+![Screenshot from 2023-07-09 13-44-38](https://github.com/singwithaashish/threewayTask/assets/52033403/e5283bab-1570-4b10-aa8d-511eafd610ac)
+![Screenshot from 2023-07-09 13-44-33](https://github.com/singwithaashish/threewayTask/assets/52033403/1ac9cd38-04ca-443c-a86b-aa060664955c)
+![Screenshot from 2023-07-09 13-44-09](https://github.com/singwithaashish/threewayTask/assets/52033403/d88dbc19-aeea-45d7-8640-931206735d6b)
+![Screenshot from 2023-07-09 13-43-26](https://github.com/singwithaashish/threewayTask/assets/52033403/1be65191-e122-4149-8c72-36c69480613f)
+![Screenshot from 2023-07-09 13-42-30](https://github.com/singwithaashish/threewayTask/assets/52033403/ea4c9cf0-7d6e-4093-8af5-2e3ed4b445c4)
+
 
 
