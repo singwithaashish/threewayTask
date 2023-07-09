@@ -10,10 +10,10 @@ MERN Chat Dashboard is a web application that allows communication between a Man
 
 ## Features
 - [x] User Registration and Authentication
-- [x] Separate landing pages for Manufacturer and Transporter
+- [x] Separate pages data for Manufacturer and Transporter
 - [x] Chat based on Orders
 - [x] Manufacturer input form with fields for Order ID, From, To, Quantity, Pickup - Address, and Transporter
-- [x] Transporter input form with fields for Order ID and Price
+- [x] Transporter can add their price on pending orders
 - [x] Real-time chat feature between Manufacturer and Transporter using Socket.io
 
 
