@@ -8,7 +8,10 @@ import {
   getOrders,
   getOrdersByTransporter,
   getOrdersByManufacturer,
+  getAllTransporters,
+  getRoom,
 } from "../controllers/dashController";
+import { getMessages, sendMessages } from "../controllers/messageController";
 
 const router = express.Router();
 
@@ -27,5 +30,13 @@ router.get(
   authMiddleware,
   getOrdersByManufacturer
 );
+
+router.get("/getRoom", authMiddleware, getRoom)
+
+router.get("/getAllTransporters", authMiddleware, getAllTransporters );
+
+/* for Message */
+router.post("/sendMessages", authMiddleware, sendMessages);
+router.post("/getMessages", authMiddleware, getMessages);
 
 export default router;

@@ -3,6 +3,7 @@ export type User = {
     isManufacturer: Boolean;
     email: string;
     _id: string | null;
+    address: string;
 }
 
 export type Order = {
@@ -15,4 +16,14 @@ export type Order = {
     status: string; // enum
     price: number | null;
     createdAt: Date;
+    manufacturerId: string;
+    transporterId: string;
+}
+
+export type Message = {
+    _id?: string;
+    from: string; // userid
+    to: string; // userid
+    content: string;
+    // createdAt: Date;
 }

@@ -5,6 +5,7 @@ import { User } from "../../typings";
 import Header from "../../components/Layout/Header";
 import OrderList from "../../components/Order/OrderList";
 import { RootState } from "../../app/store";
+import ChatList from "../../components/Chat/ChatList";
 
 function Home() {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ function Home() {
         name: data.user.name,
         email: data.user.email,
         isManufacturer: data.user.isManufacturer,
+        address: data.user.address,
       };
       dispatch(setUser(nuser));
       // console.log(user?.name)
@@ -37,7 +39,11 @@ function Home() {
   return (
     <div className="w-screen min-h-screen bg-gray-200">
       <Header />
+      <div className="flex">
+
       <OrderList />
+      <ChatList />
+      </div>
     </div>
   );
 }

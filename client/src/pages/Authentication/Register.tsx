@@ -8,6 +8,7 @@ function Register() {
   const [isManufacturer, setIsManufacturer] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [address, setAddress] = useState<string>("");
   const [password, setPassword] = useState("");
   const [confPassword, setConfPassword] = useState("");
 
@@ -24,6 +25,7 @@ function Register() {
         isManufacturer,
         name,
         email,
+        address,
         password,
       }),
     });
@@ -87,6 +89,15 @@ function Register() {
           required
           value={email}
           onChange={(e) => setEmail(e.target.value)}
+        />
+        <LabeledInput
+          label="Your address"
+          placeholder="123, Street, City, State, Country"
+          id="address"
+          type="text"
+          required
+          value={address}
+          onChange={(e) => setAddress(e.target.value)}
         />
         <LabeledInput
           label="Your password"

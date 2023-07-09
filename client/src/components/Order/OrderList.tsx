@@ -1,9 +1,14 @@
 import { useEffect, useState } from "react";
 import { Order } from "../../typings";
 import OrderCard from "./OrderCard";
+import { useDispatch, useSelector } from "react-redux";
+import { setOrders } from "../../features/globalSlice";
+import { RootState } from "../../app/store";
 
 export default function OrderList() {
-  const [orders, setOrders] = useState<Order[]>([]);
+  // const [orders, setOrders] = useState<Order[]>([]);
+  const dispatch = useDispatch();
+  const orders = useSelector((state: RootState) => state.global.orders);
 
   // get orders from backend
   useEffect(() => {
@@ -15,16 +20,19 @@ export default function OrderList() {
         credentials: "include",
       });
       const data = await res.json();
-      console.log(data);
-      setOrders(data.orders as Order[]);
+      // console.log(data);
+      // setOrders(data.orders as Order[]);
+      // console.log(data);
+      dispatch(setOrders(data.orders as Order[]));
+      console.log(orders);
     };
     fetchOrders();
   }, []);
 
   return (
-    <div className="px-5">
+    <div className="px-5 w-1/2">
       <h1>Orders</h1>
-      {orders.length > 0 &&
+      {orders?.length > 0 &&
         orders.map((order: Order) => (
           <OrderCard order={order} key={order._id} />
         ))}

@@ -3,10 +3,13 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../app/store";
 import CreateOrderForm from "../Order/CreateOrderForm";
 
-interface HeaderProps {}
-
 export default function Header() {
   const user = useSelector((state: RootState) => state.global.user);
+
+  const handleSignOut = () => {
+    localStorage.removeItem("token");
+    window.location.href = "/login";
+  };
   return (
     <Navbar fluid rounded>
       <div className="flex">
@@ -15,7 +18,7 @@ export default function Header() {
             OrdersManagament
           </span>
         </Navbar.Brand>
-        <CreateOrderForm />
+        {user?.isManufacturer && <CreateOrderForm />}
       </div>
       <div className="flex md:order-2">
         <Dropdown
@@ -30,12 +33,15 @@ export default function Header() {
         >
           <Dropdown.Header>
             <span className="block text-sm">{user?.name}</span>
+            <span className="block text-sm">
+              {user?.isManufacturer ? "Manufacturer" : "Distributor"}
+            </span>
             <span className="block truncate text-sm font-medium">
               {user?.email}
             </span>
           </Dropdown.Header>
 
-          <Dropdown.Item>Sign out</Dropdown.Item>
+          <Dropdown.Item onClick={handleSignOut}>Sign out</Dropdown.Item>
         </Dropdown>
         <Navbar.Toggle />
       </div>

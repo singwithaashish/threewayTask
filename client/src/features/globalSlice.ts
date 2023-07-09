@@ -5,11 +5,13 @@ import { Order, User } from "../typings";
 export interface CounterState {
   user: User | null;
   orders: Order[];
+  selectedOrder: Order | null;
 }
 
 const initialState: CounterState = {
   user: null,
   orders: [],
+  selectedOrder: null,
 };
 
 export const counterSlice = createSlice({
@@ -22,10 +24,13 @@ export const counterSlice = createSlice({
     setOrders: (state, action: PayloadAction<Order[]>) => {
       state.orders = action.payload;
     },
+    setSelectedOrder: (state, action: PayloadAction<Order>) => {
+      state.selectedOrder = action.payload;
+    }
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setUser, setOrders } = counterSlice.actions;
+export const { setUser, setOrders, setSelectedOrder } = counterSlice.actions;
 
 export default counterSlice.reducer;

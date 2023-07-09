@@ -5,12 +5,14 @@ export interface IUser extends Document {
   isManufacturer: Boolean;
   email: string;
   password: string;
+  address: string;
 }
 
 const UserSchema: Schema = new Schema({
     name: { type: String, required: true },
     isManufacturer: { type: Boolean, required: true },
     email: { type: String, required: true, unique: true },
+    address: { type: String, required: false },
     password: {
         type: String,
         required: true,
