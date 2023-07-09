@@ -1,5 +1,10 @@
 MERN Chat Dashboard is a web application that allows communication between a Manufacturer and a Transporter. This is achieved through a chat feature implemented with Socket.io. It provides a user-friendly interface with different input forms for each user type. The application is built using the MERN stack along with TypeScript and Socket.io.
 
+Live URL: https://aquamarine-douhua-4e3759.netlify.app/login
+
+test email `aaa@aaa.aaa`
+test pw: `aaa@aaa.aaa`  for manufacturers
+
 
 ## Table of Contents
 - [Features](#features)
