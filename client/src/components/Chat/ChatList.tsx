@@ -17,7 +17,7 @@ const ChatList = () => {
 
   useEffect(() => {
     if (!socket) {
-        socket = io("http://localhost:8000");
+        socket = io(import.meta.env.VITE_APP_BACKEND_URL || 'http://localhost:8000');
     }
 
     return () => {

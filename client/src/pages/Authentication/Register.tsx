@@ -18,7 +18,7 @@ function Register() {
     e.preventDefault();
     setLoading(true);
     // console.log(isManufacturer, name, email, password, confPassword);
-    const res = await fetch("http://localhost:8000/auth/register", {
+    const res = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL || "http://localhost:8000"}/auth/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

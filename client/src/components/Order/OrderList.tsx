@@ -14,7 +14,7 @@ export default function OrderList() {
   // get orders from backend
   useEffect(() => {
     const fetchOrders = async () => {
-      const res = await fetch("http://localhost:8000/dash/getMyOrders/" + user?._id
+      const res = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL || "http://localhost:8000"}/dash/getMyOrders/` + user?._id
       , {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

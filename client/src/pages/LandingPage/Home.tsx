@@ -16,7 +16,7 @@ function Home() {
       window.location.href = "/login";
     }
     const fetchUser = async () => {
-      const res = await fetch("http://localhost:8000/auth/me", {
+      const res = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL || "http://localhost:8000"}/auth/me`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

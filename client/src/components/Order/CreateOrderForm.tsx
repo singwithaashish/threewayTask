@@ -51,7 +51,7 @@ const TheFrom = ({setOpenModal} : {
   useEffect(() => {
     setPickup(user?.address || "");
     const fetchTransporters = async () => {
-      const res = await fetch("http://localhost:8000/dash/getAllTransporters", {
+      const res = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL || "http://localhost:8000"}/dash/getAllTransporters`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
@@ -70,7 +70,7 @@ const TheFrom = ({setOpenModal} : {
     e.preventDefault();
 
     console.log(from, to, quantity, pickup, transporter, user?._id, transporter.toString());
-    const res = await fetch("http://localhost:8000/dash/addOrder", {
+    const res = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL || "http://localhost:8000"}/dash/addOrder`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -10,8 +10,9 @@ function Login() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log(`${import.meta.env.VITE_APP_BACKEND_URL || "http://localhost:8000"}/auth/me`)
     setLoading(true);
-    const res = await fetch("http://localhost:8000/auth/login", {
+    const res = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL || "http://localhost:8000"}/auth/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({

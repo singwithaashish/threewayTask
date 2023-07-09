@@ -15,7 +15,7 @@ export default function OrderCard({ order }: { order: Order }) {
 
   const submitPrice = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:8000/dash/updatePrice", {
+    const res = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL || "http://localhost:8000"}/dash/updatePrice`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -36,7 +36,7 @@ export default function OrderCard({ order }: { order: Order }) {
 
   const acceptQuote = async (e: React.FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const res = await fetch("http://localhost:8000/dash/acceptQuote", {
+    const res = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL || "http://localhost:8000"}/dash/acceptQuote`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
